@@ -38,10 +38,10 @@ def generate_page(from_path, template_path, dest_path):
         file.close()
 
 
-def generate_page_recusive(dir_path_content, template_path, dest_dir_path):
+def generate_page_recursive(dir_path_content, template_path, dest_dir_path):
     
     for entry in os.listdir(dir_path_content):
         if os.path.isfile(os.path.join(dir_path_content,entry)):
             generate_page(os.path.join(dir_path_content,entry),template_path,dest_dir_path)
         else: 
-            generate_page_recusive(os.path.join(dir_path_content,entry),template_path,os.path.join(dest_dir_path,entry))
+            generate_page_recursive(os.path.join(dir_path_content,entry),template_path,os.path.join(dest_dir_path,entry))
