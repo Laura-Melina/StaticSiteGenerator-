@@ -1,5 +1,5 @@
-class HTMLNode:
-    def __init__(self,tag=None,value=None,children=None,props=None):
+class HTMLNode:                                                                             #html nodes as templates for the following leaf and parent nodes
+    def __init__(self,tag=None,value=None,children=None,props=None):                        
         self.tag = tag
         self.value = value
         self.children = children
@@ -29,7 +29,7 @@ class HTMLNode:
         )
 
 
-class LeafNode(HTMLNode):
+class LeafNode(HTMLNode):                                       # A child of html nodes which is supposed to be at the end of a tree like structure to display html code
     def __init__(self, tag, value, props=None):
         super().__init__(tag,value,None,props)
 
@@ -43,7 +43,7 @@ class LeafNode(HTMLNode):
     def __repr__(self):
         return f"LeafNode({self.tag}, {self.value}, {self.props})"
 
-class ParentNode(HTMLNode):
+class ParentNode(HTMLNode):                                     # A child of html nodes which is holding children in a tree like structure 
     def __init__(self,tag,children,props=None):
         super().__init__(tag,None,children,props)
     

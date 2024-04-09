@@ -11,7 +11,7 @@ from textnode import(text_node_to_html_node
 )
 
 
-def markdown_to_blocks(markdown):
+def markdown_to_blocks(markdown):            #takes a string of markdown and converts it into seperate blocks
     blocks = markdown.split("\n\n")
     filtered_blocks = []
     for block in blocks:
@@ -21,7 +21,7 @@ def markdown_to_blocks(markdown):
         filtered_blocks.append(block)
     return filtered_blocks
 
-def block_to_blocktype(block):
+def block_to_blocktype(block):            #takes  a markdown block and determines its type 
 
     pattern = r"^#{1,6} "
     if re.match(pattern,block):
@@ -57,7 +57,7 @@ def block_to_blocktype(block):
 
 
 
-def block_to_quote(block):
+def block_to_quote(block):               # converts a block of markdown to a nested list structure of html nodes respresenting html quote
     inline = []
     split_block = block.split("\n")
    
@@ -78,7 +78,7 @@ def block_to_quote(block):
 
     return output
 
-def block_to_unordered_list(block):
+def block_to_unordered_list(block):     #converts a block of markdown to a nested list structure of html nodes represting an unordered list 
     split_block = block.split("\n")
     clean_lines = []
     for split in split_block:
@@ -102,7 +102,7 @@ def block_to_unordered_list(block):
     return output
 
 
-def block_to_ordered_list(block):
+def block_to_ordered_list(block):  #converts a block of markdown to a nested list structure of html nodes represting an ordered list
 
     split_block = block.split("\n")
     clean_lines = []
@@ -130,7 +130,7 @@ def block_to_ordered_list(block):
     return output
     
 
-def block_to_code(block):
+def block_to_code(block):          ##converts a block of markdown to a nested list structure of html nodes represting a code block
     code_without_ticks = block.strip("`")
     return ParentNode("pre", [ParentNode("code", [LeafNode(None, code_without_ticks)])])
 
@@ -146,7 +146,7 @@ def block_to_heading(block):
         inline.append(text_node_to_html_node(node))
     return ParentNode(f"h{count}",inline)
 
-def block_to_paragraph(block):
+def block_to_paragraph(block):  #converts a block of markdown to a nested list structure of html nodes represting a normal paragraph
     text_nodes = text_to_textnodes(block)
     inline = []
     for node in text_nodes:
@@ -154,7 +154,7 @@ def block_to_paragraph(block):
     return ParentNode("p",inline)
 
 
-def markdown_to_html_node(markdown):
+def markdown_to_html_node(markdown):  #converts a markdown document into a nested list structure of html nodes representing the whole html structure
     blocks = markdown_to_blocks(markdown)
     children = []
     for block in blocks:
@@ -163,7 +163,7 @@ def markdown_to_html_node(markdown):
     return ParentNode("div", children, None)
 
 
-def block_to_html_node(block):
+def block_to_html_node(block):       #converts a markdown block into the correct block type
     block_type = block_to_blocktype(block)
     if block_type == block_type_paragraph:
         return block_to_paragraph(block)

@@ -2,12 +2,15 @@ from textnode import TextNode
 import os,shutil
 from static_to_public import copy_static_to_public
 from generate_page import generate_page_recursive
+
 dir_path_static = "./static"
 dir_path_public = "./public"
 from_path = "./content"
 template_path = "./template.html"
 dest_path = "./public"
-def main():
+
+
+def main(): #executs the whole programm
    
     if os.path.exists(dir_path_public):
         shutil.rmtree(dir_path_public)

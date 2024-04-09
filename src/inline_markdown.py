@@ -9,7 +9,7 @@ from textnode import (
     text_type_link
     )
 
-def split_nodes_delimiter(old_nodes, delimiter, text_type):
+def split_nodes_delimiter(old_nodes, delimiter, text_type):             #splits markdown at given delimiters and saves them as text nodes
     new_nodes = []
     for old_node in old_nodes:
         if old_node.text_type != text_type_text:
@@ -39,7 +39,7 @@ def extract_markdown_links(text):
     return matches
 
 
-def split_nodes_image(old_nodes):
+def split_nodes_image(old_nodes):                  #extracts images out of a list of nodes 
     new_nodes = []
     for old_node in old_nodes:
         if old_node.text_type != text_type_text:
@@ -67,7 +67,7 @@ def split_nodes_image(old_nodes):
 
 
 
-def split_nodes_links(old_nodes):
+def split_nodes_links(old_nodes):               #extracts links out of a list of nodes
     new_nodes = []
     for old_node in old_nodes:
         if old_node.text_type != text_type_text:
@@ -98,7 +98,7 @@ def split_nodes_links(old_nodes):
 
 
 
-def text_to_textnodes(text):
+def text_to_textnodes(text):                             #converts a string into text nodes
     nodes = [TextNode(text,text_type_text,None)]
     
     nodes = split_nodes_delimiter(nodes,"**",text_type_bold)

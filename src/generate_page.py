@@ -2,7 +2,7 @@ import os
 from outlinemarkdown import markdown_to_html_node
 
 
-def extract_tile(markdown):
+def extract_tile(markdown):                                   # extracts the title of the markdown file
     blocks = markdown.split("\n\n")
     
     if blocks[0].startswith("#"):
@@ -11,7 +11,8 @@ def extract_tile(markdown):
         raise Exception("All pages need a single h1 header")
     
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path):       #generates a html page by processing the markdown into html nodes which are then converted into plain html
+                                                              # and then inputting the title and html text into the given html template then saving it to the destination path
     open_markdown = open(from_path, "r")
     markdown_contents = open_markdown.read()
     open_markdown.close()
@@ -38,7 +39,7 @@ def generate_page(from_path, template_path, dest_path):
         file.close()
 
 
-def generate_page_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_page_recursive(dir_path_content, template_path, dest_dir_path):   #uses the functionality of the previous function but goes throught the whole folder and creates pages
     
     for entry in os.listdir(dir_path_content):
         if os.path.isfile(os.path.join(dir_path_content,entry)):

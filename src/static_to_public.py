@@ -1,7 +1,7 @@
 import os,shutil
 
 
-def copy_static_to_public(source_dir_path, dest_dir_path):
+def copy_static_to_public(source_dir_path, dest_dir_path):   #copys all the files of the static folder into the public folder
     
     if not os.path.exists(dest_dir_path):
         os.mkdir(dest_dir_path)
